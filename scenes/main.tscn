@@ -10,6 +10,13 @@ size = Vector2(1000, 1000)
 [node name="World" type="Node2D"]
 script = ExtResource("1_04cbn")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TileMap" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
+format = 2
+
 [node name="Gravity" type="Area2D" parent="."]
 gravity_space_override = 3
 
@@ -35,9 +42,9 @@ anchor_bottom = 1.0
 offset_left = -16.0
 grow_horizontal = 0
 grow_vertical = 2
-max_value = 10.0
+min_value = -2.0
+max_value = 2.0
 step = 0.01
-value = 5.0
 tick_count = 3
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/GravitySlider"]
