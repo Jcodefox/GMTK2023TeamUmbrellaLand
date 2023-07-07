@@ -28,6 +28,12 @@ func _process(delta):
 			min_gravity,
 			max_gravity
 		)
+	else:
+		_gravity = remap(
+			Input.get_axis("up", "down"),
+			-1, 1,
+			min_gravity, max_gravity
+		)
 
 	_set_global_gravity(_gravity)
 
