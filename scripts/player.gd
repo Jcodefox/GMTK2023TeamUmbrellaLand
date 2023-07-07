@@ -1,12 +1,9 @@
 extends CharacterBody2D
 
-@onready var gravity_area: Area2D = get_node("../gravity")
+@onready var gravity_area: Area2D = get_node("../Gravity")
 
 var walk_speed: float = 70
 var walk_left: bool = false
-
-func _ready():
-	pass
 
 func _process(delta):
 	if is_on_wall():
