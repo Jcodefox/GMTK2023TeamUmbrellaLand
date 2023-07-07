@@ -1,5 +1,0 @@
-res://scenes/main.tscn
-res://main.tres
-res://scripts/gravity_controller.gd
-res://scripts/player.gd
-res://prefabs/player.tscn
