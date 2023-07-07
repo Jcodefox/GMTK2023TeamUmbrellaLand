@@ -1,11 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://jjoa5yf5xn0q"]
+[gd_scene load_steps=10 format=3 uid="uid://jjoa5yf5xn0q"]
 
 [ext_resource type="Script" path="res://scripts/gravity_controller.gd" id="1_04cbn"]
 [ext_resource type="TileSet" uid="uid://w7nh8bismap6" path="res://main.tres" id="2_h2eeu"]
 [ext_resource type="PackedScene" uid="uid://da7sw4ralwaag" path="res://prefabs/player.tscn" id="4_1fy8v"]
+[ext_resource type="Texture2D" uid="uid://cojtadigduapn" path="res://sprites/slider2.png" id="4_psnfj"]
+[ext_resource type="Texture2D" uid="uid://cu4u6vrb7ya2i" path="res://sprites/slider1.png" id="5_ycxgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4djvd"]
 size = Vector2(1000, 1000)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj5uc"]
+texture = ExtResource("5_ycxgc")
+texture_margin_right = 16.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_klp5x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esf2n"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_04cbn")
@@ -38,6 +48,7 @@ position = Vector2(-261, 128)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GravitySlider" type="VSlider" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -45,6 +56,11 @@ anchor_bottom = 1.0
 offset_left = -16.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_icons/grabber = ExtResource("4_psnfj")
+theme_override_icons/grabber_highlight = ExtResource("4_psnfj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_mj5uc")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_klp5x")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_esf2n")
 min_value = -2.0
 max_value = 2.0
 step = 0.01
