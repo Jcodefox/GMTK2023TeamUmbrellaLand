@@ -12,3 +12,11 @@ func _process(delta):
 	velocity.x = walk_speed * (-1 if walk_left else 1)
 	velocity.y += delta * gravity
 	move_and_slide()
+
+func _on_win_check_body_entered(body):
+	print("Win")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+func _on_lose_check_body_entered(body):
+	print("lose")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
