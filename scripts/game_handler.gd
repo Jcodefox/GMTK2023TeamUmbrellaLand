@@ -48,13 +48,16 @@ func finish_tween():
 		get_tree().paused = false
 
 func _process(delta):
+	if UI.get_node("Lose").visible:
+		return
 	if not is_clicked:
 		return
 	is_clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if not is_clicked and mouse_over_trash:
 		handled_enemy.queue_free()
 		handled_enemy = null
-		enemy_tween.stop()
+		if enemy_tween:
+			enemy_tween.stop()
 		finish_tween()
 		return
 	if handled_enemy == null:
@@ -66,7 +69,6 @@ func enemy_input_event(viewport: Node, event: InputEvent, shape_idx: int):
 		return
 	if not event.button_index == MOUSE_BUTTON_LEFT:
 		return
-	
 	if event.pressed:
 		offset = handled_enemy.position - get_global_mouse_position()
 		is_clicked = true
@@ -89,7 +91,8 @@ func coin_collected():
 		if handled_enemy != null:
 			handled_enemy.process_mode = PROCESS_MODE_INHERIT
 			handled_enemy.z_index = 0
-			enemy_tween.stop()
+			if enemy_tween:
+				enemy_tween.stop()
 			enemy_tween = null
 	)
 
