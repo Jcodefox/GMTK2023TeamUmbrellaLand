@@ -11,6 +11,7 @@ func _process(delta):
 		$Sprite.flip_h = walk_left
 	velocity.x = walk_speed * (-1 if walk_left else 1)
 	velocity.y += delta * gravity
+	
 	move_and_slide()
 
 func _on_win_check_body_entered(body):

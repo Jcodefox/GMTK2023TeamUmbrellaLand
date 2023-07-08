@@ -42,4 +42,4 @@ func _set_global_gravity(gravity: float) -> void:
 		get_viewport().find_world_2d().space,
 		PhysicsServer2D.AREA_PARAM_GRAVITY,
 		gravity * 980
-	 )
+	)
