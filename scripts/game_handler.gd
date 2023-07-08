@@ -5,6 +5,7 @@ var offset: Vector2 = Vector2.ZERO
 var handled_enemy: PhysicsBody2D = null
 var mouse_over_trash: bool = false
 var tween: Tween = null
+
 func enemy_stomped(enemy: PhysicsBody2D):
 	enemy.scale.y = 0.75
 	enemy.position.y += 2
@@ -14,16 +15,21 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy.process_mode = Node.PROCESS_MODE_ALWAYS
 	enemy.can_move = false
 	get_node("../CanvasLayer/Trash").visible = true
+	get_node("../CanvasLayer/TimeBar").visible = true
+	get_node("../CanvasLayer/TimeBar").value = 0
 	get_tree().paused = true
 	tween = get_tree().create_tween()
 	$ColorRect.color.a = 0.75
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property($ColorRect, "color", Color(0, 0, 0, 0), 3)
+	tween.parallel()
+	tween.tween_property(get_node("../CanvasLayer/TimeBar"), "value", 100, 3)
 	tween.tween_callback(finish_tween)
 
 func finish_tween():
 	tween = null
 	get_node("../CanvasLayer/Trash").visible = false
+	get_node("../CanvasLayer/TimeBar").visible = false
 	if handled_enemy != null:
 		handled_enemy.process_mode = PROCESS_MODE_INHERIT
 		$ColorRect.color = Color(0, 0, 0, 0.9)

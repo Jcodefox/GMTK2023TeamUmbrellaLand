@@ -75,5 +75,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You broke the illusion!"
 
+[node name="TimeBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+show_percentage = false
+
 [connection signal="mouse_entered" from="CanvasLayer/Trash" to="GameHandler" method="_on_trash_mouse_over_change" binds= [true]]
 [connection signal="mouse_exited" from="CanvasLayer/Trash" to="GameHandler" method="_on_trash_mouse_over_change" binds= [false]]
