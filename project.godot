@@ -15,6 +15,11 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://sprites/player.png"
 
+[autoload]
+
+GameHandler="*res://prefabs/game_handler.tscn"
+UI="*res://prefabs/ui.tscn"
+
 [input]
 
 left_click={

@@ -48,5 +48,10 @@ func _on_enemy_and_wall_check_body_entered(body):
 func _on_stomp_check_body_entered(body):
 	if body.is_in_group("enemy"):
 		velocity.y -= jump_force
-		get_node("../GameHandler").enemy_stomped(body)
-		
+		GameHandler.enemy_stomped(body)
+
+func _on_coin_check_area_entered(area):
+	if area.is_in_group("coin"):
+		GameHandler.coin_collected()
+		area.visible = false
+		area.queue_free()

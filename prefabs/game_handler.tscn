@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq2wr4prhhuf7"]
+
+[ext_resource type="Script" path="res://scripts/game_handler.gd" id="1_j77cv"]
+
+[node name="GameHandler" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_j77cv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+offset_left = -2500.0
+offset_top = -2500.0
+offset_right = 2500.0
+offset_bottom = 2500.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

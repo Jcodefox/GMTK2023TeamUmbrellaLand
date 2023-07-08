@@ -27,7 +27,7 @@ texture = ExtResource("1_rh1uc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.5
@@ -65,8 +65,14 @@ shape = SubResource("RectangleShape2D_f4e21")
 position = Vector2(0, 16.3125)
 shape = SubResource("RectangleShape2D_tup1q")
 
+[node name="CoinCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinCheck"]
+shape = SubResource("CapsuleShape2D_gmfcj")
+
 [connection signal="body_entered" from="WinCheck" to="." method="_on_win_check_body_entered"]
 [connection signal="body_entered" from="LoseCheck" to="." method="_on_lose_check_body_entered"]
 [connection signal="body_exited" from="HoleCheck" to="." method="_on_hole_check_body_exited"]
 [connection signal="body_entered" from="EnemyAndWallCheck" to="." method="_on_enemy_and_wall_check_body_entered"]
 [connection signal="body_entered" from="StompCheck" to="." method="_on_stomp_check_body_entered"]
+[connection signal="area_entered" from="CoinCheck" to="." method="_on_coin_check_area_entered"]

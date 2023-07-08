@@ -1,26 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://jjoa5yf5xn0q"]
+[gd_scene load_steps=6 format=3 uid="uid://jjoa5yf5xn0q"]
 
-[ext_resource type="Script" path="res://scripts/game_handler.gd" id="1_bi4u2"]
 [ext_resource type="TileSet" uid="uid://w7nh8bismap6" path="res://main.tres" id="2_h2eeu"]
 [ext_resource type="PackedScene" uid="uid://da7sw4ralwaag" path="res://prefabs/player.tscn" id="4_1fy8v"]
 [ext_resource type="PackedScene" uid="uid://45txncpcoc8m" path="res://prefabs/enemy.tscn" id="5_1sfcr"]
 [ext_resource type="AudioStream" uid="uid://cxchq6k7h7pxy" path="res://music/song_1_loop.wav" id="5_kwky3"]
-[ext_resource type="Texture2D" uid="uid://c8tkjk1puhixf" path="res://sprites/trashcan.png" id="6_pw30c"]
+[ext_resource type="PackedScene" uid="uid://xys7fekmap2s" path="res://prefabs/coin.tscn" id="7_bs2ot"]
 
 [node name="World" type="Node2D"]
-
-[node name="GameHandler" type="Node2D" parent="."]
-process_mode = 3
-script = ExtResource("1_bi4u2")
-
-[node name="ColorRect" type="ColorRect" parent="GameHandler"]
-z_index = 5
-offset_left = -2500.0
-offset_top = -2500.0
-offset_right = 2500.0
-offset_bottom = 2500.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource("2_h2eeu")
@@ -41,47 +27,4 @@ stream = ExtResource("5_kwky3")
 
 [node name="Enemy" parent="." instance=ExtResource("5_1sfcr")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Trash" type="TextureRect" parent="CanvasLayer"]
-visible = false
-texture_filter = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -160.0
-offset_bottom = -96.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(2, 2)
-texture = ExtResource("6_pw30c")
-stretch_mode = 3
-
-[node name="Lose" type="Label" parent="CanvasLayer"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -86.5
-offset_top = -13.0
-offset_right = 86.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "You broke the illusion!"
-
-[node name="TimeBar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 27.0
-grow_horizontal = 2
-show_percentage = false
-
-[connection signal="mouse_entered" from="CanvasLayer/Trash" to="GameHandler" method="_on_trash_mouse_over_change" binds= [true]]
-[connection signal="mouse_exited" from="CanvasLayer/Trash" to="GameHandler" method="_on_trash_mouse_over_change" binds= [false]]
+[node name="Coin" parent="." instance=ExtResource("7_bs2ot")]
