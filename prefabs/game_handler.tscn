@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq2wr4prhhuf7"]
+[gd_scene load_steps=5 format=3 uid="uid://dq2wr4prhhuf7"]
 
 [ext_resource type="Script" path="res://scripts/game_handler.gd" id="1_j77cv"]
 [ext_resource type="AudioStream" uid="uid://cxchq6k7h7pxy" path="res://music/song_1_loop.wav" id="2_t7t46"]
 [ext_resource type="AudioStream" uid="uid://s8nrhfa1okxc" path="res://sfx/ding.wav" id="3_6e71e"]
+[ext_resource type="Texture2D" uid="uid://c6qtnqbh8htbx" path="res://cursor.png" id="4_vg62n"]
 
 [node name="GameHandler" type="Node2D"]
 process_mode = 3
@@ -24,3 +25,11 @@ autoplay = true
 [node name="CoinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6e71e")
 volume_db = 8.0
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="CursorTutorial" type="TextureRect" parent="Canvas"]
+z_index = 30
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_vg62n")

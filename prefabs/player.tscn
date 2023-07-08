@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://da7sw4ralwaag"]
+[gd_scene load_steps=12 format=3 uid="uid://da7sw4ralwaag"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_b6gf3"]
-[ext_resource type="Texture2D" uid="uid://b7ibrdx6gnv21" path="res://sprites/player.png" id="1_rh1uc"]
 [ext_resource type="AudioStream" uid="uid://cc20iwufkdivi" path="res://sfx/footstep1.wav" id="2_qthun"]
+[ext_resource type="Texture2D" uid="uid://eoej0j53orvd" path="res://sprites/clud.png" id="3_gh8a3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmfcj"]
 radius = 4.0
@@ -16,6 +16,40 @@ size = Vector2(10, 6.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tup1q"]
 size = Vector2(8, 1.375)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_or1tb"]
+atlas = ExtResource("3_gh8a3")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv5vc"]
+atlas = ExtResource("3_gh8a3")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bv7f"]
+atlas = ExtResource("3_gh8a3")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cl75l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or1tb")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv5vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bv7f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_b6gf3")
 
@@ -26,10 +60,6 @@ pitch_scale = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_gmfcj")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_rh1uc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
@@ -44,13 +74,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinCheck"]
-shape = SubResource("CapsuleShape2D_gmfcj")
-
-[node name="LoseCheck" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseCheck"]
 shape = SubResource("CapsuleShape2D_gmfcj")
 
 [node name="HoleCheck" type="Area2D" parent="."]
@@ -76,8 +99,14 @@ shape = SubResource("RectangleShape2D_tup1q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoinCheck"]
 shape = SubResource("CapsuleShape2D_gmfcj")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cl75l")
+animation = &"walk"
+autoplay = "walk"
+offset = Vector2(0, -1)
+
 [connection signal="body_entered" from="WinCheck" to="." method="_on_win_check_body_entered"]
-[connection signal="body_entered" from="LoseCheck" to="." method="_on_lose_check_body_entered"]
 [connection signal="body_exited" from="HoleCheck" to="." method="_on_hole_check_body_exited"]
 [connection signal="body_entered" from="EnemyAndWallCheck" to="." method="_on_enemy_and_wall_check_body_entered"]
 [connection signal="body_entered" from="StompCheck" to="." method="_on_stomp_check_body_entered"]

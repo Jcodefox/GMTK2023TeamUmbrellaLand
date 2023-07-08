@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 @onready var levels: Array[String] = [
+	"res://scenes/tutorial.tscn",
 	"res://scenes/main.tscn",
 	"res://scenes/test_level.tscn",
+	"res://scenes/level_3.tscn",
 	"res://scenes/final_win_screen.tscn"
 ]
 
@@ -13,6 +15,14 @@ var jump_multiplier: float = 1
 var walk_left: bool = false
 @onready var gravity: float = PhysicsServer2D.area_get_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 var should_jump: bool = false
+
+func _ready():
+	if get_tree().current_scene.scene_file_path == levels[0]:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		GameHandler.tutorial_mode(true)
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameHandler.tutorial_mode(false)
 
 func _physics_process(delta):
 	velocity.x = walk_speed

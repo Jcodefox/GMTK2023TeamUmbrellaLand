@@ -1,10 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://45txncpcoc8m"]
+[gd_scene load_steps=10 format=3 uid="uid://45txncpcoc8m"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_01bqr"]
-[ext_resource type="Texture2D" uid="uid://bbmxw5oivks6i" path="res://sprites/stone.png" id="2_cbfrg"]
+[ext_resource type="Texture2D" uid="uid://37mfywn1wolq" path="res://sprites/enemy.png" id="2_m058s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t716c"]
 radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajr8d"]
+atlas = ExtResource("2_m058s")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4456"]
+atlas = ExtResource("2_m058s")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0lmp"]
+atlas = ExtResource("2_m058s")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snbok"]
+atlas = ExtResource("2_m058s")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmswp"]
+atlas = ExtResource("2_m058s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6xabi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajr8d")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4456")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0lmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snbok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmswp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 input_pickable = true
@@ -13,9 +61,11 @@ script = ExtResource("1_01bqr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t716c")
 
-[node name="Stone" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_cbfrg")
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-10, -2500, 20, 5000)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6xabi")
+autoplay = "default"
+frame_progress = 0.550474

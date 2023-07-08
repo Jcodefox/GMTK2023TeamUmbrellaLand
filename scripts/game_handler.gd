@@ -6,9 +6,13 @@ var handled_enemy: PhysicsBody2D = null
 var mouse_over_trash: bool = false
 var enemy_tween: Tween = null
 var coin_tween: Tween = null
+var cursor_tween: Tween = null
 
 var coins: int = 0
 var coins_uncounted: int = 0
+
+func tutorial_mode(on: bool):
+	$Canvas/CursorTutorial.visible = on
 
 func _ready():
 	UI.get_node("Trash").mouse_entered.connect(_on_trash_mouse_over_change.bind(true))
@@ -35,8 +39,7 @@ func reload_level():
 	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 
 func enemy_stomped(enemy: PhysicsBody2D):
-	enemy.scale.y = 0.75
-	enemy.position.y += 2
+	enemy.get_node("AnimatedSprite2D").animation = "dead" 
 	enemy.z_index = 10
 	handled_enemy = enemy
 	enemy.input_event.connect(enemy_input_event)
@@ -46,7 +49,7 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	UI.get_node("TimeBar").visible = true
 	UI.get_node("TimeBar").value = 0
 	get_tree().paused = true
-	enemy_tween = get_tree().create_tween()
+	enemy_tween = create_tween()
 	$ColorRect.color.a = 0.75
 	enemy_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	enemy_tween.tween_property($Music, "pitch_scale", 0.4, 1)
@@ -55,6 +58,28 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy_tween.parallel()
 	enemy_tween.tween_property(UI.get_node("TimeBar"), "value", 100, 3)
 	enemy_tween.tween_callback(finish_tween)
+	
+	if not $Canvas/CursorTutorial.visible:
+		return
+	if cursor_tween:
+		cursor_tween.stop()
+		cursor_tween = null
+	cursor_tween = create_tween()
+	get_viewport().position
+	Input.warp_mouse(UI.get_node("Trash").position + UI.get_node("Trash").size)
+	var trash_screen_loc: Vector2 = get_global_mouse_position()
+	cursor_tween.tween_property($Canvas/CursorTutorial, "position", handled_enemy.get_global_transform_with_canvas().origin, 0.5)
+	cursor_tween.tween_interval(0.1)
+	cursor_tween.tween_property($Canvas/CursorTutorial, "position", UI.get_node("Trash").position + UI.get_node("Trash").size, 1)
+	cursor_tween.parallel()
+	cursor_tween.tween_property(handled_enemy, "global_position", trash_screen_loc, 1)
+	cursor_tween.tween_callback(func():
+		handled_enemy.queue_free()
+		handled_enemy = null
+		if enemy_tween:
+			enemy_tween.stop()
+		finish_tween()
+	)
 
 func finish_tween():
 	enemy_tween = null
@@ -104,7 +129,7 @@ func coin_collected():
 	if coin_tween != null:
 		coin_tween.stop()
 		coin_tween = null
-	coin_tween = get_tree().create_tween()
+	coin_tween = create_tween()
 	UI.get_node("CoinButton").modulate = Color.WHITE
 	coin_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	coin_tween.tween_property(UI.get_node("CoinButton"), "modulate", Color(1, 1, 1, 0), 3)
@@ -122,6 +147,18 @@ func coin_collected():
 				enemy_tween.stop()
 			enemy_tween = null
 	)
+	
+	if not $Canvas/CursorTutorial.visible:
+		return
+	if cursor_tween:
+		cursor_tween.stop()
+		cursor_tween = null
+	cursor_tween = create_tween()
+	cursor_tween.tween_property($Canvas/CursorTutorial, "position", UI.get_node("CoinButton").position + UI.get_node("CoinButton").size / 2, 0.5)
+	cursor_tween.tween_interval(0.2)
+	cursor_tween.tween_callback(coin_button_press)
+	cursor_tween.tween_interval(0.2)
+	cursor_tween.tween_callback(coin_button_press)
 
 func coin_button_press():
 	coins += 1
