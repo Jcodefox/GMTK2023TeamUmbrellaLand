@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq2wr4prhhuf7"]
+[gd_scene load_steps=4 format=3 uid="uid://dq2wr4prhhuf7"]
 
 [ext_resource type="Script" path="res://scripts/game_handler.gd" id="1_j77cv"]
 [ext_resource type="AudioStream" uid="uid://cxchq6k7h7pxy" path="res://music/song_1_loop.wav" id="2_t7t46"]
+[ext_resource type="AudioStream" uid="uid://s8nrhfa1okxc" path="res://sfx/ding.wav" id="3_6e71e"]
 
 [node name="GameHandler" type="Node2D"]
 process_mode = 3
@@ -16,6 +17,10 @@ offset_bottom = 2500.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_t7t46")
 autoplay = true
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6e71e")
+volume_db = 8.0

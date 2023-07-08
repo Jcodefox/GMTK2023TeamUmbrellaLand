@@ -41,7 +41,28 @@ offset_right = 86.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.101961, 0.101961, 0.101961, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
 text = "You broke the illusion!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Lose"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_right = 39.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try again"
 
 [node name="TimeBar" type="ProgressBar" parent="."]
 visible = false

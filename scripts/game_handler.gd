@@ -14,6 +14,25 @@ func _ready():
 	UI.get_node("Trash").mouse_entered.connect(_on_trash_mouse_over_change.bind(true))
 	UI.get_node("Trash").mouse_exited.connect(_on_trash_mouse_over_change.bind(false))
 	UI.get_node("CoinButton").pressed.connect(coin_button_press)
+	UI.get_node("Lose/Button").pressed.connect(reload_level)
+
+func reload_level():
+	if enemy_tween:
+		enemy_tween.stop()
+		enemy_tween = null
+	if coin_tween:
+		coin_tween.stop()
+		coin_tween = null
+	is_clicked = false
+	handled_enemy = null
+	UI.get_node("Trash").visible = false
+	UI.get_node("TimeBar").visible = false
+	UI.get_node("Lose").visible = false
+	$Music.pitch_scale = 1
+	$ColorRect.color = Color(0, 0, 0, 0)
+	coins_uncounted = 0
+	get_tree().paused = false
+	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 
 func enemy_stomped(enemy: PhysicsBody2D):
 	enemy.scale.y = 0.75
@@ -30,7 +49,7 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy_tween = get_tree().create_tween()
 	$ColorRect.color.a = 0.75
 	enemy_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	enemy_tween.tween_property($AudioStreamPlayer, "pitch_scale", 0.4, 1)
+	enemy_tween.tween_property($Music, "pitch_scale", 0.4, 1)
 	enemy_tween.parallel()
 	enemy_tween.tween_property($ColorRect, "color", Color(0, 0, 0, 0), 3)
 	enemy_tween.parallel()
@@ -45,8 +64,9 @@ func finish_tween():
 		handled_enemy.process_mode = PROCESS_MODE_INHERIT
 		$ColorRect.color = Color(0, 0, 0, 0.9)
 		UI.get_node("Lose").visible = true
+		UI.get_node("Lose").text = "The enemy did not disappear as the player expected!\nThe player rage quit!"
 	else:
-		$AudioStreamPlayer.pitch_scale = 1
+		$Music.pitch_scale = 1
 		$ColorRect.color = Color(0, 0, 0, 0)
 		get_tree().paused = false
 
@@ -77,7 +97,9 @@ func enemy_input_event(viewport: Node, event: InputEvent, shape_idx: int):
 		is_clicked = true
 
 func coin_collected():
+	$CoinSound.play()
 	coins_uncounted += 1
+	UI.get_node("CoinButton").text = "+1/" + str(coins_uncounted)
 	UI.get_node("CoinButton").visible = true
 	if coin_tween != null:
 		coin_tween.stop()
@@ -87,7 +109,9 @@ func coin_collected():
 	coin_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	coin_tween.tween_property(UI.get_node("CoinButton"), "modulate", Color(1, 1, 1, 0), 3)
 	coin_tween.tween_callback(func():
+		get_tree().paused = true
 		UI.get_node("Lose").visible = true
+		UI.get_node("Lose").text = "The coin counter didn't go up as the player expected!\nThe player rage quit!"
 		UI.get_node("Trash").visible = false
 		UI.get_node("TimeBar").visible = false
 		$ColorRect.color = Color(0, 0, 0, 0.9)
@@ -102,10 +126,12 @@ func coin_collected():
 func coin_button_press():
 	coins += 1
 	coins_uncounted -= 1
+	UI.get_node("CoinButton").text = "+1/" + str(coins_uncounted)
 	UI.get_node("Coins").text = "$" + str(coins)
 	if coins_uncounted == 0:
 		UI.get_node("CoinButton").visible = false
-	coin_tween.stop()
+	if coin_tween:
+		coin_tween.stop()
 	coin_tween = null
 
 func _on_trash_mouse_over_change(mouse_over: bool):

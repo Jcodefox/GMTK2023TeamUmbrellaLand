@@ -20,6 +20,11 @@ config/icon="res://sprites/player.png"
 GameHandler="*res://prefabs/game_handler.tscn"
 UI="*res://prefabs/ui.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 left_click={

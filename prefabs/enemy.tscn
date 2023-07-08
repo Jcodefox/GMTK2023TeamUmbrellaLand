@@ -16,3 +16,6 @@ shape = SubResource("CircleShape2D_t716c")
 [node name="Stone" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_cbfrg")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-10, -2500, 20, 5000)
