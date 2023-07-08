@@ -1,19 +1,23 @@
 extends CharacterBody2D
 
 @onready var levels: Array[String] = [
-	"main", "main", "final_win_screen"
+	"main", "final_win_screen"
 ]
 
-@export var jump_force: float = 275
+@export var jump_force: float = 210
 @export var walk_speed: float = 70
 
 var walk_left: bool = false
 @onready var gravity: float = PhysicsServer2D.area_get_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 var should_jump: bool = false
 
-func _process(delta):
+func _physics_process(delta):
 	velocity.x = walk_speed
 	velocity.y += delta * gravity
+	
+#	if is_on_floor() and not was_on_floor and not get_tree().get_frame() < 16:
+#		velocity.y -= jump_force * 0.5
+#		#get_tree().paused = true
 	
 	if should_jump and is_on_floor():
 		velocity.y -= jump_force
@@ -40,3 +44,9 @@ func _on_hole_check_body_exited(body):
 func _on_enemy_and_wall_check_body_entered(body):
 	if is_on_floor():
 		should_jump = true
+
+func _on_stomp_check_body_entered(body):
+	if body.is_in_group("enemy"):
+		velocity.y -= jump_force
+		get_node("../GameHandler").enemy_stomped(body)
+		
