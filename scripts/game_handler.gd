@@ -80,6 +80,8 @@ func enemy_stomped(enemy: PhysicsBody2D):
 			enemy_tween.stop()
 		finish_tween()
 	)
+	cursor_tween.tween_property($Canvas/CursorTutorial, "global_position", get_viewport_rect().size / 2, 1)
+	Input.warp_mouse(get_viewport_rect().size / 2)
 
 func finish_tween():
 	enemy_tween = null
@@ -167,9 +169,9 @@ func coin_button_press():
 	UI.get_node("Coins").text = "$" + str(coins)
 	if coins_uncounted == 0:
 		UI.get_node("CoinButton").visible = false
-	if coin_tween:
-		coin_tween.stop()
-	coin_tween = null
+		if coin_tween:
+			coin_tween.stop()
+		coin_tween = null
 
 func _on_trash_mouse_over_change(mouse_over: bool):
 	mouse_over_trash = mouse_over
