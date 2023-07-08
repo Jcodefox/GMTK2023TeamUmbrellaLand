@@ -17,6 +17,7 @@ texture_filter = 1
 texture = ExtResource("1_rh1uc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
 zoom = Vector2(2, 2)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
