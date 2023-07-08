@@ -1,0 +1,4 @@
+Add code for incrementing counter when coin is collecting
+Add code for removing enemy when jumped on
+Add code for powerup where you need to clean all enemies off the screen
+Add floating platform that you, the game, need to move

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://da7sw4ralwaag"]
+[gd_scene load_steps=6 format=3 uid="uid://da7sw4ralwaag"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_b6gf3"]
 [ext_resource type="Texture2D" uid="uid://b7ibrdx6gnv21" path="res://sprites/player.png" id="1_rh1uc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmfcj"]
 radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knxa0"]
+size = Vector2(4, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4e21"]
+size = Vector2(10, 6.75)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_b6gf3")
@@ -38,5 +44,19 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoseCheck"]
 shape = SubResource("CapsuleShape2D_gmfcj")
 
+[node name="HoleCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleCheck"]
+position = Vector2(11, 31.5)
+shape = SubResource("RectangleShape2D_knxa0")
+
+[node name="EnemyAndWallCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyAndWallCheck"]
+position = Vector2(17, 10)
+shape = SubResource("RectangleShape2D_f4e21")
+
 [connection signal="body_entered" from="WinCheck" to="." method="_on_win_check_body_entered"]
 [connection signal="body_entered" from="LoseCheck" to="." method="_on_lose_check_body_entered"]
+[connection signal="body_exited" from="HoleCheck" to="." method="_on_hole_check_body_exited"]
+[connection signal="body_entered" from="EnemyAndWallCheck" to="." method="_on_enemy_and_wall_check_body_entered"]

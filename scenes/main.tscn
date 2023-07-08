@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://jjoa5yf5xn0q"]
+[gd_scene load_steps=5 format=3 uid="uid://jjoa5yf5xn0q"]
 
-[ext_resource type="Script" path="res://scripts/gravity_controller.gd" id="1_04cbn"]
 [ext_resource type="TileSet" uid="uid://w7nh8bismap6" path="res://main.tres" id="2_h2eeu"]
 [ext_resource type="PackedScene" uid="uid://da7sw4ralwaag" path="res://prefabs/player.tscn" id="4_1fy8v"]
 [ext_resource type="PackedScene" uid="uid://be007j2t6f57g" path="res://prefabs/boulder.tscn" id="4_gbdpu"]
 [ext_resource type="AudioStream" uid="uid://cxchq6k7h7pxy" path="res://music/song_1_loop.wav" id="5_kwky3"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_04cbn")
-gravity_sider_snap = 150
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource("2_h2eeu")
@@ -25,9 +22,8 @@ layer_0/tile_data = PackedInt32Array(655342, 65536, 6, 655343, 65536, 6, 655344,
 position = Vector2(-261, 128)
 
 [node name="Boulder" parent="." instance=ExtResource("4_gbdpu")]
-position = Vector2(0, -24)
+position = Vector2(88, 224)
 lock_rotation = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_kwky3")
-autoplay = true
