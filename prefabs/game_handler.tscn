@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq2wr4prhhuf7"]
+[gd_scene load_steps=3 format=3 uid="uid://dq2wr4prhhuf7"]
 
 [ext_resource type="Script" path="res://scripts/game_handler.gd" id="1_j77cv"]
+[ext_resource type="AudioStream" uid="uid://cxchq6k7h7pxy" path="res://music/song_1_loop.wav" id="2_t7t46"]
 
 [node name="GameHandler" type="Node2D"]
 process_mode = 3
@@ -14,3 +15,7 @@ offset_right = 2500.0
 offset_bottom = 2500.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_t7t46")
+autoplay = true

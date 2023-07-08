@@ -30,6 +30,8 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy_tween = get_tree().create_tween()
 	$ColorRect.color.a = 0.75
 	enemy_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	enemy_tween.tween_property($AudioStreamPlayer, "pitch_scale", 0.4, 1)
+	enemy_tween.parallel()
 	enemy_tween.tween_property($ColorRect, "color", Color(0, 0, 0, 0), 3)
 	enemy_tween.parallel()
 	enemy_tween.tween_property(UI.get_node("TimeBar"), "value", 100, 3)
@@ -44,6 +46,7 @@ func finish_tween():
 		$ColorRect.color = Color(0, 0, 0, 0.9)
 		UI.get_node("Lose").visible = true
 	else:
+		$AudioStreamPlayer.pitch_scale = 1
 		$ColorRect.color = Color(0, 0, 0, 0)
 		get_tree().paused = false
 
