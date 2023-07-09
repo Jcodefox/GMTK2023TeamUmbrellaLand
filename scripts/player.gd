@@ -56,7 +56,7 @@ func _on_win_check_body_entered(body):
 func go_to_next_level():
 	var current_level_path: String = get_tree().current_scene.scene_file_path
 	var current_level_index: int = levels.find(current_level_path)
-	print(current_level_index)
+	GameHandler.coins_in_this_round = 0
 	get_tree().change_scene_to_file(levels[current_level_index + 1])
 
 func _on_hole_check_body_exited(body):

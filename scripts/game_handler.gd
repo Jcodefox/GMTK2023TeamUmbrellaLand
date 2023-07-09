@@ -1,6 +1,7 @@
 extends Node2D
 
 var is_clicked: bool = false
+var has_clicked: bool = false
 var offset: Vector2 = Vector2.ZERO
 var handled_enemy: PhysicsBody2D = null
 var mouse_over_trash: bool = false
@@ -10,10 +11,12 @@ var cursor_tween: Tween = null
 
 var coins: int = 0
 var coins_uncounted: int = 0
+var coins_in_this_round: int = 0
 
 func tutorial_mode(on: bool):
 	coins_uncounted = 0
 	is_clicked = false
+	has_clicked = false
 	mouse_over_trash = false
 	$Canvas/CursorTutorial.visible = on
 	if not on:
@@ -29,6 +32,8 @@ func _ready():
 	UI.get_node("Lose/Button").pressed.connect(reload_level)
 
 func reload_level():
+	coins -= coins_in_this_round
+	UI.get_node("Coins").text = "$" + str(coins)
 	if enemy_tween:
 		enemy_tween.stop()
 		enemy_tween = null
@@ -36,6 +41,7 @@ func reload_level():
 		coin_tween.stop()
 		coin_tween = null
 	is_clicked = false
+	has_clicked = false
 	handled_enemy = null
 	UI.get_node("Trash").visible = false
 	UI.get_node("TimeBar").visible = false
@@ -53,6 +59,7 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy.input_event.connect(enemy_input_event)
 	enemy.process_mode = Node.PROCESS_MODE_ALWAYS
 	enemy.can_move = false
+	has_clicked = false
 	UI.get_node("Trash").visible = true
 	UI.get_node("TimeBar").visible = true
 	UI.get_node("TimeBar").value = 0
@@ -92,6 +99,8 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	Input.warp_mouse(get_viewport_rect().size / 2)
 
 func finish_tween():
+	mouse_over_trash = false
+	has_clicked = false
 	enemy_tween = null
 	UI.get_node("Trash").visible = false
 	UI.get_node("TimeBar").visible = false
@@ -108,10 +117,9 @@ func finish_tween():
 func _process(delta):
 	if UI.get_node("Lose").visible:
 		return
-	if not is_clicked:
-		return
-	is_clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	if not is_clicked and mouse_over_trash:
+	if is_clicked:
+		is_clicked = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if has_clicked and not is_clicked and mouse_over_trash:
 		handled_enemy.queue_free()
 		handled_enemy = null
 		if enemy_tween:
@@ -120,7 +128,8 @@ func _process(delta):
 		return
 	if handled_enemy == null:
 		return
-	handled_enemy.position = get_global_mouse_position() + offset
+	if has_clicked:
+		handled_enemy.position = get_global_mouse_position() + offset
 
 func enemy_input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	if not event is InputEventMouseButton:
@@ -130,6 +139,7 @@ func enemy_input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	if event.pressed:
 		offset = handled_enemy.position - get_global_mouse_position()
 		is_clicked = true
+		has_clicked = true
 
 func coin_collected():
 	$CoinSound.play()
@@ -173,6 +183,7 @@ func coin_collected():
 
 func coin_button_press():
 	coins += 1
+	coins_in_this_round += 1
 	coins_uncounted -= 1
 	UI.get_node("CoinButton").text = "+1/" + str(coins_uncounted)
 	UI.get_node("Coins").text = "$" + str(coins)
