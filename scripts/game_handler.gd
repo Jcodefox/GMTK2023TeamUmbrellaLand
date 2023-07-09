@@ -71,9 +71,9 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	enemy_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	enemy_tween.tween_property($Music, "pitch_scale", 0.4, 1)
 	enemy_tween.parallel()
-	enemy_tween.tween_property($ColorRect, "color", Color(0, 0, 0, 0), 3)
+	enemy_tween.tween_property($ColorRect, "color", Color(0, 0, 0, 0), 2)
 	enemy_tween.parallel()
-	enemy_tween.tween_property(UI.get_node("TimeBar"), "value", 100, 3)
+	enemy_tween.tween_property(UI.get_node("TimeBar"), "value", 100, 2)
 	enemy_tween.tween_callback(finish_tween)
 	
 	if not $Canvas/CursorTutorial.visible:
