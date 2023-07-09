@@ -32,7 +32,9 @@ func _ready():
 	UI.get_node("Lose/Button").pressed.connect(reload_level)
 
 func reload_level():
+	UI.get_node("CoinButton").visible = false
 	coins -= coins_in_this_round
+	coins_in_this_round = 0
 	UI.get_node("Coins").text = "$" + str(coins)
 	if enemy_tween:
 		enemy_tween.stop()
