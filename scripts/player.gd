@@ -4,6 +4,8 @@ extends CharacterBody2D
 	"res://scenes/tutorial.tscn",
 	"res://scenes/main.tscn",
 	"res://scenes/test_level.tscn",
+	"res://scenes/level_4.tscn",
+	"res://scenes/level_5.tscn",
 	"res://scenes/level_3.tscn",
 	"res://scenes/final_win_screen.tscn"
 ]
@@ -15,8 +17,12 @@ var jump_multiplier: float = 1
 var walk_left: bool = false
 @onready var gravity: float = PhysicsServer2D.area_get_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 var should_jump: bool = false
+var can_jump: bool = false
 
 func _ready():
+	get_tree().create_timer(0.25).timeout.connect(func():
+		can_jump = true
+	)
 	if get_tree().current_scene.scene_file_path == levels[0]:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 		GameHandler.tutorial_mode(true)
@@ -49,7 +55,7 @@ func go_to_next_level():
 	get_tree().change_scene_to_file(levels[current_level_index + 1])
 
 func _on_hole_check_body_exited(body):
-	if get_tree().get_frame() < 16:
+	if not can_jump:
 		return
 	if not $HoleCheck.has_overlapping_bodies() and is_on_floor():
 		should_jump = true

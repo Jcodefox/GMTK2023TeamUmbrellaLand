@@ -13,7 +13,7 @@ config_version=5
 config/name="GMTK_2023_UL"
 run/main_scene="res://scenes/tutorial.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://sprites/player.png"
+config/icon="res://sprites/clud.png"
 
 [autoload]
 

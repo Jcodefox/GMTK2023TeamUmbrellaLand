@@ -25,3 +25,4 @@ position = Vector2(-261, 128)
 position = Vector2(-56, 136)
 
 [node name="Coin" parent="." instance=ExtResource("7_bs2ot")]
+position = Vector2(-200, 120)

@@ -6,7 +6,6 @@
 radius = 4.0
 
 [node name="Coin" type="Area2D" groups=["coin"]]
-position = Vector2(-208, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["coin"]]
 shape = SubResource("CircleShape2D_2wqp4")

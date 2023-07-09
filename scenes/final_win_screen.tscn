@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dq70s43kb8riq"]
+[gd_scene load_steps=2 format=3 uid="uid://dq70s43kb8riq"]
+
+[ext_resource type="Texture2D" uid="uid://cxnfyw5lqpbxf" path="res://sprites/clud_splash.png" id="1_xyhc8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -8,17 +10,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.00784314, 0.388235, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game complete"
+texture = ExtResource("1_xyhc8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=32][center][wave]Congrats, the player has won the demo![/wave][/center][/font_size]"
+fit_content = true
