@@ -12,12 +12,20 @@ var coins: int = 0
 var coins_uncounted: int = 0
 
 func tutorial_mode(on: bool):
+	coins_uncounted = 0
+	is_clicked = false
+	mouse_over_trash = false
 	$Canvas/CursorTutorial.visible = on
+	if not on:
+		if not UI.get_node("CoinButton").pressed.is_connected(coin_button_press):
+			UI.get_node("CoinButton").pressed.connect(coin_button_press)
+	else:
+		if UI.get_node("CoinButton").pressed.is_connected(coin_button_press):
+			UI.get_node("CoinButton").pressed.disconnect(coin_button_press)
 
 func _ready():
 	UI.get_node("Trash").mouse_entered.connect(_on_trash_mouse_over_change.bind(true))
 	UI.get_node("Trash").mouse_exited.connect(_on_trash_mouse_over_change.bind(false))
-	UI.get_node("CoinButton").pressed.connect(coin_button_press)
 	UI.get_node("Lose/Button").pressed.connect(reload_level)
 
 func reload_level():
@@ -67,12 +75,12 @@ func enemy_stomped(enemy: PhysicsBody2D):
 	cursor_tween = create_tween()
 	get_viewport().position
 	Input.warp_mouse(UI.get_node("Trash").position + UI.get_node("Trash").size)
-	var trash_screen_loc: Vector2 = get_global_mouse_position()
+	var diff: Vector2 = (UI.get_node("Trash").global_position + UI.get_node("Trash").size) - handled_enemy.get_global_transform_with_canvas().origin
 	cursor_tween.tween_property($Canvas/CursorTutorial, "position", handled_enemy.get_global_transform_with_canvas().origin, 0.5)
 	cursor_tween.tween_interval(0.1)
 	cursor_tween.tween_property($Canvas/CursorTutorial, "position", UI.get_node("Trash").position + UI.get_node("Trash").size, 1)
 	cursor_tween.parallel()
-	cursor_tween.tween_property(handled_enemy, "global_position", trash_screen_loc, 1)
+	cursor_tween.tween_property(handled_enemy, "global_position", handled_enemy.global_position + diff * 0.333, 1)
 	cursor_tween.tween_callback(func():
 		handled_enemy.queue_free()
 		handled_enemy = null
@@ -156,7 +164,8 @@ func coin_collected():
 		cursor_tween.stop()
 		cursor_tween = null
 	cursor_tween = create_tween()
-	cursor_tween.tween_property($Canvas/CursorTutorial, "position", UI.get_node("CoinButton").position + UI.get_node("CoinButton").size / 2, 0.5)
+	cursor_tween.tween_property($Canvas/CursorTutorial, "position", \
+		UI.get_node("CoinButton").position + UI.get_node("CoinButton").size / 2, 0.5)
 	cursor_tween.tween_interval(0.2)
 	cursor_tween.tween_callback(coin_button_press)
 	cursor_tween.tween_interval(0.2)
