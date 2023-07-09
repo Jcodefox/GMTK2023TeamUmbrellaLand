@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://da7sw4ralwaag" path="res://prefabs/player.tscn" id="2_w1d53"]
 
 [node name="World" type="Node2D"]
+texture_filter = 1
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource("1_emoq5")

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xys7fekmap2s" path="res://prefabs/coin.tscn" id="5_bm6xp"]
 
 [node name="World3" type="Node2D"]
+texture_filter = 1
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource("1_po6ym")
