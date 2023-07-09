@@ -18,6 +18,7 @@ var walk_left: bool = false
 @onready var gravity: float = PhysicsServer2D.area_get_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY)
 var should_jump: bool = false
 var can_jump: bool = false
+var was_grounded: bool = true
 
 func _ready():
 	get_tree().create_timer(0.25).timeout.connect(func():
@@ -42,6 +43,10 @@ func _physics_process(delta):
 	if should_jump:
 		velocity.y -= jump_force * jump_multiplier
 		should_jump = false
+		$Jump.play()
+	if is_on_floor() and not was_grounded:
+		$Land.play()
+	was_grounded = is_on_floor()
 	
 	move_and_slide()
 
@@ -75,6 +80,7 @@ func _on_stomp_check_body_entered(body):
 	if body.is_in_group("enemy"):
 		should_jump = true
 		jump_multiplier = 1
+		$Boom.play()
 		GameHandler.enemy_stomped(body)
 
 func _on_coin_check_area_entered(area):

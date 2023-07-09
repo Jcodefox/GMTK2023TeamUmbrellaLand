@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://da7sw4ralwaag"]
+[gd_scene load_steps=15 format=3 uid="uid://da7sw4ralwaag"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_b6gf3"]
 [ext_resource type="AudioStream" uid="uid://cc20iwufkdivi" path="res://sfx/footstep1.wav" id="2_qthun"]
+[ext_resource type="AudioStream" uid="uid://c252lvdaxffmd" path="res://sfx/jump.wav" id="3_f56li"]
 [ext_resource type="Texture2D" uid="uid://eoej0j53orvd" path="res://sprites/clud.png" id="3_gh8a3"]
+[ext_resource type="AudioStream" uid="uid://dxuk4nudw08nm" path="res://sfx/land.wav" id="4_yvaqi"]
+[ext_resource type="AudioStream" uid="uid://bboqthqoj5k54" path="res://sfx/boom.wav" id="5_nv13w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmfcj"]
 radius = 4.0
@@ -55,6 +58,22 @@ script = ExtResource("1_b6gf3")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_qthun")
+volume_db = 24.0
+pitch_scale = 1.2
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f56li")
+volume_db = 24.0
+pitch_scale = 1.2
+
+[node name="Land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yvaqi")
+volume_db = 24.0
+pitch_scale = 1.2
+
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_nv13w")
 volume_db = 24.0
 pitch_scale = 1.2
 

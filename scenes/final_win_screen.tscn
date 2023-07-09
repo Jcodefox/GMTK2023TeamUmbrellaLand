@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq70s43kb8riq"]
+[gd_scene load_steps=3 format=3 uid="uid://dq70s43kb8riq"]
 
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_8pqwb"]
 [ext_resource type="Texture2D" uid="uid://cxnfyw5lqpbxf" path="res://sprites/clud_splash.png" id="1_xyhc8"]
 
-[node name="Control" type="Control"]
+[node name="WinScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8pqwb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -46,3 +48,20 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[font_size=32][center][wave]Congrats, the player has won the demo![/wave][/center][/font_size]"
 fit_content = true
+
+[node name="Replay" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 36.0
+offset_right = 35.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Replay"
+
+[connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
