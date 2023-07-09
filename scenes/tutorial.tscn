@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://45txncpcoc8m" path="res://prefabs/enemy.tscn" id="3_dpiig"]
 [ext_resource type="PackedScene" uid="uid://xys7fekmap2s" path="res://prefabs/coin.tscn" id="4_6w0oo"]
 
-[node name="World" type="Node2D"]
+[node name="World2" type="Node2D"]
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 tile_set = ExtResource("1_v262d")

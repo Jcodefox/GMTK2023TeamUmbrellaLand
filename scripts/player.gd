@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 @onready var levels: Array[String] = [
 	"res://scenes/tutorial.tscn",
-	"res://scenes/main.tscn",
-	"res://scenes/test_level.tscn",
+	"res://scenes/level_1.tscn",
+	"res://scenes/level_2.tscn",
+	"res://scenes/level_3.tscn",
 	"res://scenes/level_4.tscn",
 	"res://scenes/level_5.tscn",
-	"res://scenes/level_3.tscn",
 	"res://scenes/final_win_screen.tscn"
 ]
 

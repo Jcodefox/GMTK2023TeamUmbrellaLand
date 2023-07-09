@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd4ylrnamt00w"]
+[gd_scene load_steps=6 format=3 uid="uid://d65rgxt6cvhg"]
 
 [ext_resource type="TileSet" uid="uid://d4g3q74mo2hbc" path="res://bg_tiles.tres" id="1_acf83"]
 [ext_resource type="TileSet" uid="uid://w7nh8bismap6" path="res://main.tres" id="1_bbt4e"]
@@ -17,160 +17,25 @@ layer_0/tile_data = PackedInt32Array(-589842, 65536, 3, -524306, 65536, 3, -4587
 texture_filter = 1
 tile_set = ExtResource("1_bbt4e")
 format = 2
-layer_0/tile_data = PackedInt32Array(655339, 458752, 4, 655340, 458752, 4, 655341, 458752, 4, 655342, 458752, 4, 655343, 458752, 4, 655344, 458752, 4, 655345, 458752, 4, 655346, 458752, 4, 655347, 458752, 4, 655348, 458752, 4, 655349, 458752, 4, 655350, 458752, 4, 655355, 458752, 4, 655356, 458752, 4, 655357, 458752, 4, 655358, 458752, 4, 655359, 458752, 4, 589824, 458752, 4, 589825, 458752, 4, 589826, 458752, 4, 589827, 458752, 4, 589828, 458752, 4, 589831, 458752, 4, 589832, 458752, 4, 589833, 458752, 4, 589834, 458752, 4, 589835, 458752, 4, 589836, 458752, 4, 655354, 458752, 4, 655351, 458752, 4, 655352, 458752, 4, 655353, 458752, 4, 589829, 458752, 4, 589830, 458752, 4, 589837, 458752, 4, 589838, 458752, 4, 589839, 458752, 4, 589840, 458752, 4, 589841, 458752, 4, 589842, 458752, 4, 589843, 458752, 4, 589844, 458752, 4, 589845, 458752, 4, 589846, 458752, 4, 589847, 458752, 4, 589848, 458752, 4, 589849, 458752, 4, 589850, 458752, 4, 589851, 458752, 4, 589852, 458752, 4, 589853, 458752, 4, 589854, 458752, 4, 589855, 458752, 4, 589856, 458752, 4, 589857, 458752, 4, 589858, 458752, 4, 589859, 458752, 4, 589860, 458752, 4, 589861, 458752, 4, 589862, 458752, 4, 589863, 458752, 4, 589864, 458752, 4, 589865, 458752, 4, 589866, 458752, 4, 589867, 458752, 4, 589868, 458752, 4, 589869, 458752, 4, 589870, 458752, 4, 589871, 458752, 4, 589872, 458752, 4, 589873, 458752, 4, 589874, 458752, 4, 589875, 458752, 4, 589876, 458752, 4, 589877, 458752, 4, 589878, 458752, 4, 589879, 458752, 4, 589880, 458752, 4, 589881, 458752, 4, 589882, 458752, 4, 589883, 458752, 4, 589884, 458752, 4, 589885, 458752, 4, 589886, 458752, 4, 589887, 458752, 4, 589888, 458752, 4, 589889, 458752, 4, 589890, 458752, 4, 589891, 458752, 4, 589892, 458752, 4, 589893, 458752, 4, 589894, 458752, 4, 589895, 458752, 4, 589896, 458752, 4, 589897, 458752, 4, 589898, 458752, 4, 589899, 458752, 4, 589900, 458752, 4, 589901, 458752, 4, 524356, 589824, 1, 327723, 524288, 0, 327726, 524288, 0, 327727, 524288, 0, 327728, 524288, 0, 327725, 524288, 0, 327724, 524288, 0, 327729, 589824, 0, 327722, 589824, 2)
+layer_0/tile_data = PackedInt32Array(655339, 458752, 4, 655340, 458752, 4, 655341, 458752, 4, 655342, 458752, 4, 655343, 458752, 4, 655344, 458752, 4, 655345, 458752, 4, 655346, 458752, 4, 655347, 458752, 4, 655348, 458752, 4, 655349, 458752, 4, 655350, 458752, 4, 655355, 458752, 4, 655356, 458752, 4, 655357, 458752, 4, 655358, 458752, 4, 655359, 458752, 4, 589824, 458752, 4, 589825, 458752, 4, 589826, 458752, 4, 589827, 458752, 4, 589828, 458752, 4, 589831, 458752, 4, 589832, 458752, 4, 589833, 458752, 4, 589834, 458752, 4, 589835, 458752, 4, 589836, 458752, 4, 655354, 458752, 4, 524288, 458752, 4, 524289, 458752, 4, 524290, 458752, 4, 524291, 458752, 4, 524292, 458752, 4, 393222, 917504, 2, 393223, 917504, 2, 393224, 917504, 2, 393225, 917504, 2, 393226, 917504, 2, 393228, 917504, 2, 393227, 917504, 2, 458751, 851968, 2, 393221, 917504, 2, 393220, 917504, 2, 393219, 917504, 2, 393218, 917504, 2, 393217, 917504, 2, 393216, 917504, 2, 393229, 917504, 2, 393230, 917504, 2, 393231, 917504, 2, 393232, 917504, 2, 393233, 917504, 2, 393234, 983040, 2, 393239, 589824, 1, 393238, 589824, 1, 458774, 589824, 1, 458775, 589824, 1, 131094, 393216, 1, 196630, 393216, 2, 262166, 589824, 2, 131095, 393216, 1, 196631, 393216, 2, 262167, 589824, 2)
 
 [node name="Player" parent="." instance=ExtResource("2_6eq0n")]
 position = Vector2(-261, 128)
+
+[node name="Enemy" parent="." instance=ExtResource("4_fubi5")]
+position = Vector2(192, 40)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_fubi5")]
+position = Vector2(-16, 136)
 
 [node name="Coin" parent="." instance=ExtResource("3_xeixl")]
 position = Vector2(-152, 132)
 
 [node name="Coin2" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-136, 132)
+position = Vector2(-144, 108)
 
 [node name="Coin3" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-120, 132)
+position = Vector2(-136, 88)
 
 [node name="Coin4" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-104, 132)
-
-[node name="Coin5" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-88, 132)
-
-[node name="Coin6" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-72, 132)
-
-[node name="Coin7" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-56, 132)
-
-[node name="Coin8" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-40, 132)
-
-[node name="Coin9" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-24, 132)
-
-[node name="Coin10" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(-8, 132)
-
-[node name="Coin11" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(8, 132)
-
-[node name="Coin12" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(24, 132)
-
-[node name="Coin13" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(40, 132)
-
-[node name="Coin14" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(56, 132)
-
-[node name="Coin15" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(72, 132)
-
-[node name="Coin16" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(88, 132)
-
-[node name="Coin17" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(104, 132)
-
-[node name="Coin18" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(120, 132)
-
-[node name="Coin19" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(136, 132)
-
-[node name="Coin20" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(152, 132)
-
-[node name="Coin21" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(168, 132)
-
-[node name="Coin22" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(184, 132)
-
-[node name="Coin23" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(200, 132)
-
-[node name="Coin24" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(216, 132)
-
-[node name="Coin25" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(232, 132)
-
-[node name="Coin26" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(248, 132)
-
-[node name="Coin27" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(264, 132)
-
-[node name="Coin28" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(280, 132)
-
-[node name="Coin29" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(296, 132)
-
-[node name="Coin30" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(312, 132)
-
-[node name="Coin31" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(328, 132)
-
-[node name="Coin32" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(344, 132)
-
-[node name="Coin33" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(360, 132)
-
-[node name="Coin34" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(376, 132)
-
-[node name="Coin35" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(392, 132)
-
-[node name="Coin36" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(408, 132)
-
-[node name="Coin37" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(424, 132)
-
-[node name="Coin38" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(440, 132)
-
-[node name="Coin39" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(456, 132)
-
-[node name="Coin40" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(472, 132)
-
-[node name="Coin41" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(488, 132)
-
-[node name="Coin42" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(504, 132)
-
-[node name="Coin43" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(520, 132)
-
-[node name="Coin44" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(536, 132)
-
-[node name="Coin45" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(552, 132)
-
-[node name="Coin46" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(568, 132)
-
-[node name="Coin47" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(584, 132)
-
-[node name="Coin48" parent="." instance=ExtResource("3_xeixl")]
-position = Vector2(600, 132)
-
-[node name="Enemy" parent="." instance=ExtResource("4_fubi5")]
-position = Vector2(784, 136)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_fubi5")]
-position = Vector2(888, 136)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_fubi5")]
-position = Vector2(984, 136)
+position = Vector2(96, 48)
