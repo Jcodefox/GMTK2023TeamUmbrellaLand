@@ -22,9 +22,9 @@ UI="*res://prefabs/ui.tscn"
 
 [display]
 
+mouse_cursor/custom_image="res://cursor.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-mouse_cursor/custom_image="res://cursor.png"
 
 [input]
 
